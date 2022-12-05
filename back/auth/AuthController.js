@@ -96,6 +96,7 @@ exports.register = function (request, response) {
             // Отправить письмо пользователю
             // с сформированной ссылкой
             await sendVerityEmail(newUser)
+            newUser.password = null
             return response.status(201).json(newUser)
         })
     })

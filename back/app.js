@@ -44,6 +44,9 @@ app.use(authMiddleware)
 const auth = require('./auth/authRoutes')
 app.use('/api/auth', auth)
 
+const shop = require('./storeWebsites/shopRouter')
+app.use('/api/shop', shop)
+
 
 
 
