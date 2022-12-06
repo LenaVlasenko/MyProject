@@ -20,7 +20,7 @@ export default function FormRegistration() {
     })
 
     const formOptions = { resolver: yupResolver(formSchema) }
-    const { register, handleSubmit, reset, formState } = useForm(formOptions)
+    const { register, handleSubmit, formState } = useForm(formOptions)
     const { errors } = formState
 
     const onSubmit = function (data){
