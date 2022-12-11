@@ -1,0 +1,21 @@
+.formDis{
+    margin-top: 7%;
+    text-align: center;
+    color: #5859a4;
+}
+.form-control{
+    width: 40%;
+    color: #5859a4;
+    border: 1px solid #b0d0f0;
+    margin-left: 30%;
+}
+form{
+    text-align: center;
+    color: #5859a4;
+}
+
+.btn-primary {
+    color: #e3c72b;
+    background-color: #1d97df;
+    border-color:  #1d97df;
+}

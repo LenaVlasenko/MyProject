@@ -1,0 +1,15 @@
+#mainNav{
+    background-color: #006a81;
+    opacity: 0.9;
+    color: #2c3034;
+}
+
+.logo{
+    font-size: 20px;
+    font-style: italic;
+    font-weight: bold;
+    color: #e3c72b;
+}
+.logo:hover{
+    color: #61dafb;
+}

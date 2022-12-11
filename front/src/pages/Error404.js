@@ -1,3 +1,5 @@
+import "./CSS/error.css"
+
 export default function Error404() {
     return(
         <header className="masthead" id="error">

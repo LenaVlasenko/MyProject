@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 import {toast} from "react-toastify";
+import "../../../pages/CSS/formLog.css"
 
 export default function FormLogin(){
 
@@ -12,7 +13,7 @@ export default function FormLogin(){
             .email('Формат почты не верный'),
         password: Yup.string()
             .required('Пароль обязательный')
-            .min(3, 'МИнимальная длинна пароля 3 символа')
+            .min(3, 'Минимальная длинна пароля 3 символа')
             .matches(/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/g, "Ваш пароль слишком простой"),
 
     })
@@ -56,7 +57,7 @@ export default function FormLogin(){
 
     return(
         <div className="container mt-5">
-            <h6>Вход (логин)</h6>
+            <h6 className="formDis">Вход (логин)</h6>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <label>Email</label>

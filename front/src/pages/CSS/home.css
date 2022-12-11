@@ -1,0 +1,10 @@
+.marginT{
+    margin-top: 2%;
+    border: 2px solid red;
+    width: 32%;
+    height: 120px;
+}
+.rec{
+    display: flex;
+    justify-content: space-around;
+}

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 import {toast} from "react-toastify";
+import "../../../pages/CSS/formLog.css"
 
 export default function FormRegistration() {
 
@@ -65,7 +66,7 @@ export default function FormRegistration() {
 
     return (
         <div className="container mt-5">
-            <h6>Регистрация пользователя</h6>
+            <h6 className="formDis">Регистрация пользователя</h6>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <label>Email</label>
