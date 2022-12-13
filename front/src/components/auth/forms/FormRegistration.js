@@ -69,7 +69,7 @@ export default function FormRegistration() {
             <h6 className="formDis">Регистрация пользователя</h6>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
-                    <label>Email</label>
+                    <label>Email<br/>Ця почта буде додана в ваш магазин, як почта через яку з вами можна зв'язатись!</label>
                     <input
                         name="email"
                         type="email"

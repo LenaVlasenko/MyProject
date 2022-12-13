@@ -8,3 +8,8 @@
     display: flex;
     justify-content: space-around;
 }
+
+img{
+    width: 100px;
+    height: 120px;
+}

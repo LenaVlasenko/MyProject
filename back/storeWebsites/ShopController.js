@@ -14,6 +14,8 @@ exports.create = function (request, response){
 
     let newShop = new ShopModel (bodyShop)
 
+    console.log(newShop)
+
     // Сохранили запись в базе данных
     newShop.save(function(err){
         if(err) { // Если ошибка - вернуть ошибку
@@ -41,7 +43,7 @@ exports.index = function (request, response) {
     });
 }
 
-// вернуть конкрекретное обьявление
+// вернуть конкрекретный магазин
 exports.show = function (request, response) { //получили всех студентов и отправили со статусом 201
 
     let findId = request.params.shop_id

@@ -10,7 +10,8 @@ const shopsSchema = new mongoose.Schema({
     contact: Number, // номер телефона
     aboutShop: String,// иформация о магазине, условия заказа
     created_at: Date,// когда создал магазин
-    type: Number, // 0 - украинский производитель, 1 - предпринематель
+    typeShop: Number, // 0 - украинский производитель, 1 - предпринематель
+    typeProducts: Number,// категория товара 0 - одежда, 1 - мебель ...
     imgMain: String,//ссылка на главное изображение
     images: {String},// набор картинок
     title: String, // заголовок

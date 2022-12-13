@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 import {toast} from "react-toastify";
+import '../../../pages/CSS/formEd.css'
 
 export  default function FormEditUser(){
 
@@ -145,9 +146,20 @@ export  default function FormEditUser(){
     // Если данные загружены и не было ошибок - вывести форму пользователю
     return(
         <div className="container mt-5">
-            <h2>Ваш пароль</h2>
+            <h2>Создать ваш магазин</h2>
 
             <form onSubmit={handleSubmit(setMe)}>
+                <div className="form-group">
+                    <label>Avatar</label>
+                    <img src={'http://localHost:3333' + user.avatar} height='200' width='150' className='imgA'/>
+                    <input
+                        name="avatar"
+                        type="file"
+                        {...register('avatar')}
+                        className={`form-control ${errors.avatar ? 'is-invalid' : ''}`}
+                    />
+                    <div className="invalid-feedback">{errors.avatar?.message}</div>
+                </div>
                 <div className="form-group">
                     <label>Email</label>
                     <input
@@ -160,17 +172,7 @@ export  default function FormEditUser(){
                     />
                     <div className="invalid-feedback">{errors.email?.message}</div>
                 </div>
-                <div className="form-group">
-                    <label>Avatar</label>
-                    <img src={'http://localHost:3333' + user.avatar} height='100'/>
-                    <input
-                        name="avatar"
-                        type="file"
-                        {...register('avatar')}
-                        className={`form-control ${errors.avatar ? 'is-invalid' : ''}`}
-                    />
-                    <div className="invalid-feedback">{errors.avatar?.message}</div>
-                </div>
+
                 <div className="form-group">
                     <label>Name</label>
                     <input
