@@ -7,7 +7,8 @@ export default function HomePage(){
            <div className="container mt-5">
                <div className="rec">
                    <div className="marginT">
-                   Тут може бути ваша реклама
+                       Тут може бути ваша реклама
+                       {/*<FileForm></FileForm>*/}
                    </div>
                    <div className="marginT">
                    Тут може бути ваша реклама

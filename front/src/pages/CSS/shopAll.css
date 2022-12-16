@@ -1,0 +1,51 @@
+.shopTitle{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid red;
+    /*justify-content: space-between*/
+}
+.titleName{
+    width: 48%;
+    display: flex;
+    /*justify-content: flex-start;*/
+    border: 2px solid red;
+}
+.titleName:hover{
+    width: 100%;
+    display: flex;
+    /*justify-content: flex-start;*/
+}
+.shopName{
+    font-size: 20px;
+    font-weight: bold;
+    color: #006a81;
+    font-style: italic;
+}
+.foto{
+    width: 32%;
+    border: 2px solid green;
+}
+.inform{
+    width: 65%;
+    margin-left: 2%;
+    border: 2px solid green;
+}
+.about{
+    width: 45%;
+    border: 2px solid green;
+    margin-left: 8%;
+    display: none;
+}
+.titleName:hover .about{
+    display: block;
+    margin: 1%;
+    flex-direction: row;
+    /*justify-content: space-around;*/
+}
+.titleName:hover .foto{
+    width: 20%;
+}
+.titleName:hover .inform{
+    width: 30%;
+}

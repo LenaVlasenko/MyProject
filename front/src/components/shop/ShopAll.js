@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
+import "../../pages/CSS/shopAll.css"
 
 export default function ShopAll() {
 
@@ -44,15 +45,45 @@ export default function ShopAll() {
 
     return(
         <div>
-            <div> { shop.name} </div>
-            <ul>
+            {/*<div> { shop.name} </div>*/}
+            <div className='shopTitle'>
                 {shop.map(shop => (
-                    <li key={shop._id}>
-                        <p>{shop.shopName}</p>
-                    </li>
+                    <div key={shop._id}  className='titleName'>
+                        <div className='foto'>
+                        <p>{shop.avatar}</p>
+                        </div>
+                        <div className='inform'>
+                        <p className='shopName'>Назва: {shop.shopName}</p>
+                        <p>Телефон: {shop.contact}</p>
+                        <p>Місто: {shop.location}</p>
+                        </div>
+                        <div className='about'>
+                            <p>Про магазин: {shop.aboutShop}</p>
+
+                        </div>
+                    </div>
                 ))
                 }
-            </ul>
+            </div>
+
+
+            {/*<div className="row">*/}
+            {/*    <div className="col-sm-6">*/}
+            {/*        <div className="card">*/}
+            {/*            {shop.map(shop => (*/}
+            {/*                <div key={shop._id} className="card-body">*/}
+            {/*                    <p className="card-title">{shop.avatar}</p>*/}
+            {/*                    <p className="card-text">Назва магазину: {shop.shopName}</p>*/}
+            {/*                    /!*<a href="#" className="btn btn-primary">Go somewhere</a>*!/*/}
+            {/*                </div>*/}
+            {/*            ))*/}
+            {/*            }*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+        {/*    </div>*/}
+
+
+
         </div>
     )
 }

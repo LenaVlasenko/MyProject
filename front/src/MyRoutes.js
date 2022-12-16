@@ -5,7 +5,6 @@ import FooterPage from "./pages/FooterPage";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import ShopHomePage from "./pages/shop/ShopHomePage";
-import CreateShop from "./pages/shop/CreateShop";
 import CreateShopTitle from "./components/shop/CreateShopTitle";
 
 
@@ -16,7 +15,7 @@ export default function MyRoutes(){
             <Route path="/" element={<HomePage></HomePage>} />
             <Route path="/register" element={<RegisterPage></RegisterPage>} />
             <Route path="/login" element={<LoginPage></LoginPage>} />
-            {/*<Route path="/shop" element={<ShopHomePage></ShopHomePage>} />*/}
+            <Route path="/shop" element={<ShopHomePage></ShopHomePage>} />
             <Route path="/shopTitle" element={<CreateShopTitle></CreateShopTitle>} />
 
             <Route path="/footer" element={<FooterPage></FooterPage>} />

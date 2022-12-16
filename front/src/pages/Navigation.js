@@ -19,7 +19,6 @@ export default function Navigation(){
 
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
-                            <Link to="/"></Link>
                             <Link className="nav-link" to="/">Головна </Link>
                         </li>
 
@@ -31,8 +30,8 @@ export default function Navigation(){
                             </button>
                             <ul className="dropdown-menu">
                                 <li><Link className="nav-link" to="/shop">Усі магазини</Link></li>
-                                <li><a className="dropdown-item" href="#">Український виробник</a></li>
-                                <li><a className="dropdown-item" href="#">Підприємець</a></li>
+                                {/*<li> <a className="dropdown-item" href="#"> Український виробник </a> </li>*/}
+                                {/*<li><a className="dropdown-item" href="#">Підприємець</a></li>*/}
                                 <li><Link className="nav-link" to="/shopTitle">Створити магазин</Link></li>
                             </ul>
                         </div>

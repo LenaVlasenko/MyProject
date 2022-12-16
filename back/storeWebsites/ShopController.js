@@ -22,7 +22,7 @@ exports.create = function (request, response){
             console.log(err)
             return response.status(422).json(err)
         }
-        else { // Если все хорошо - вренуть нового студента
+        else { // Если все хорошо - вренуть новое
             return response.status(201).json(newShop);
         }
     });
