@@ -1,4 +1,5 @@
-const ShopModel = require('./ShopModel')
+const adModel = require('./AdModel')
+
 
 exports.create = function (request, response){
     // Если пользователь не авторизован - нет ключа
@@ -6,24 +7,24 @@ exports.create = function (request, response){
         return response.status(401).json({message: "Вы не вошли в систему"})
     }
 
-    let bodyShop = request.body
-    bodyShop.author_id = request.user._id // фиксируем пользователя
-    bodyShop.created_at = Date.now()
+    let bodyAd = request.body
+    bodyAd.author_id = request.user._id // фиксируем пользователя
+    bodyAd.created_at = Date.now()
 
     // TODO: потом тут получать картинки
 
-    let newShop = new ShopModel (bodyShop)
+    let newAd = new adModel (bodyAd)
 
-    console.log(newShop)
+    console.log(newAd)
 
     // Сохранили запись в базе данных
-    newShop.save(function(err){
+    newAd.save(function(err){
         if(err) { // Если ошибка - вернуть ошибку
             console.log(err)
             return response.status(422).json(err)
         }
         else { // Если все хорошо - вренуть новое
-            return response.status(201).json(newShop);
+            return response.status(201).json(newAd);
         }
     });
 
@@ -31,14 +32,14 @@ exports.create = function (request, response){
 
 //вернуть все
 exports.index = function (request, response) {
-    ShopModel.find({}, function(err, allShops){
+    adModel.find({}, function(err, allAd){
 
         if(err) {
             console.log(err);
             return response.status(404).json(err);
         }
         else {
-            return response.status(200).json(allShops);
+            return response.status(200).json(allAd);
         }
     });
 }
@@ -46,16 +47,15 @@ exports.index = function (request, response) {
 // вернуть конкрекретный магазин
 exports.show = function (request, response) {
 
-    let findId = request.params.shop_id
-
-    ShopModel.findById(findId, function(err, allShops){
+    let findId = request.params.ad_id
+    adModel.findById(findId, function(err, allAd){
 
         if(err) {
             console.log(err);
             return response.status(404).json(err);
         }
         else {
-            return response.status(200).json(allShops);
+            return response.status(200).json(allAd);
         }
     });
 }
@@ -68,14 +68,14 @@ exports.update = function (request, response){
     }
 
     //Шукаю запис в базі данних
-    ShopModel.findById(findId, function(err, shop){
+    adModel.findById(findId, function(err, ad){
 
         if(err) {
             console.log(err);
             return response.status(404).json(err);
         }
         else {
-            if (shop.author_id.toString() !== request.user._id){
+            if (ad.author_id.toString() !== request.user._id){
                 return response.status(403).json({message: "Ви не маєте права видалити цей магазин"})
             }
 
@@ -104,21 +104,21 @@ exports.delete = function (request, response){
         return response.status(401).json({message: "Вы не вошли в систему"})
     }
 
-    let findId = request.params.shop_id
+    let findId = request.params.ad_id
 
     //Шукаю запис в базі данних
-    ShopModel.findById(findId, function(err, shop){
+    adModel.findById(findId, function(err, ad){
 
         if(err) {
             console.log(err);
             return response.status(404).json(err);
         }
         else {
-            if (shop.author_id.toString() !== request.user._id){
+            if (ad.author_id.toString() !== request.user._id){
                 return response.status(403).json({message: "Ви не маєте права видалити цей магазин"})
             }
 
-            ShopModel.findByIdAndDelete(findId, function (err){
+            adModel.findByIdAndDelete(findId, function (err){
                 if(err) {
                     console.log(err);
                     return response.status(422).json(err);
@@ -133,5 +133,11 @@ exports.delete = function (request, response){
     //Знайти те що треба видалити
     //Поривняти автора і того, хто хоче видалити. Видаляти тільки тоді коли автор співпадає
 
-
 }
+
+
+
+
+
+
+

@@ -13,8 +13,7 @@ export default function FormRegistration() {
             .email('Формат почты не верный'),
         password: Yup.string()
             .required('Пароль обязательный')
-            .min(3, 'МИнимальная длинна пароля 3 символа')
-            .matches(/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/g, "Ваш пароль слишком простой"),
+            .min(3, 'Минимальная длинна пароля 3 символа'),
         confirmPwd: Yup.string()
             .required('Повторите пароль')
             .oneOf([Yup.ref('password')], 'Ваши пароли не совпадают'),

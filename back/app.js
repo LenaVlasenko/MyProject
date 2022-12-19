@@ -47,6 +47,9 @@ app.use('/api/auth', auth)
 const shop = require('./storeWebsites/shopRouter')
 app.use('/api/shop', shop)
 
+const ad = require('./shopAd/adRouter')
+app.use('/api/ad', ad)
+
 
 
 

@@ -1,0 +1,37 @@
+.marTop{
+    margin-top: 7%;
+}
+.shopDiv{
+    border: 2px solid #006a81;
+    border-radius: 15px;
+    background-color: lightyellow;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 1%;
+    padding: 1% 0;
+}
+.icon{
+    width: 20%;
+    border: 1px solid green;
+    border-radius: 20px;
+}
+.info{
+    width: 25%;
+}
+.aboutShop{
+    width: 39%;
+}
+.aboutShop p{
+    word-wrap: break-word;
+    margin: 0 1%;
+}
+.button{
+    display: block;
+}
+img, svg {
+    color: blue;
+}
+.telegramButton{
+    width: 40px;
+    border-radius: 10px;
+}

@@ -13,3 +13,21 @@
 .logo:hover{
     color: #61dafb;
 }
+.shopOne{
+    border: 1px solid yellow;
+    border-radius: 50%;
+    padding: 10%;
+    color: #e3c72b;
+    margin-left: 3%;
+}
+.shopOne:hover{
+    color: #61dafb;
+}
+.btn {
+    height: 69%;
+    margin-top: 8%;
+}
+li {
+    width: 99%;
+    border: none;
+}

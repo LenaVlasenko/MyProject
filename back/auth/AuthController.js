@@ -45,6 +45,7 @@ exports.login = function (request, response) {
 
                 //Или формируйте ответ по условиям задачи
                 let sendUser = {
+                    _id:dbUser._id,
                     email: dbUser.email,
                     role: dbUser.role
                 }

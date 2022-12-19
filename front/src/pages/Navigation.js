@@ -6,6 +6,7 @@ export default function Navigation(){
         <nav className="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div className="container px-4 px-lg-5">
                 <Link className="navbar-brand" to="/"><span className="logo">UkT</span></Link>
+                <Link className="navbar-brand" to="/shopOne"><span className="shopOne">Мій</span></Link>
                 <button className="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                         aria-label="Toggle navigation">
@@ -29,8 +30,9 @@ export default function Navigation(){
                                 Що шукаєте
                             </button>
                             <ul className="dropdown-menu">
-                                <li><Link className="nav-link" to="/shop">Усі магазини</Link></li>
-                                {/*<li> <a className="dropdown-item" href="#"> Український виробник </a> </li>*/}
+                                <li><Link className="nav-link" to="/shopAll">Усі магазини</Link></li>
+                                {/*<li><Link className="nav-link" to="{shop.typeShop[0]}">Український виробник</Link></li>*/}
+                                {/*<li> <a className="dropdown-item" href="#"> Український виробник</a> </li>*/}
                                 {/*<li><a className="dropdown-item" href="#">Підприємець</a></li>*/}
                                 <li><Link className="nav-link" to="/shopTitle">Створити магазин</Link></li>
                             </ul>

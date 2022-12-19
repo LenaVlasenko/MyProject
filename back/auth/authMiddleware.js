@@ -15,7 +15,7 @@ const authMiddleware = function (request, response, next){
     console.log("Проверяю ключ: " + token)
 
    // Если передали ключ проверю его
-    if (token) {
+    if (token !== null && token !== 'null' && token !== undefined) {
         jwt.verify(
             token,
             process.env.JWT_KEY,

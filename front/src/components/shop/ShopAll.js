@@ -6,6 +6,7 @@ export default function ShopAll() {
 
 
     const [shop, setShop] = useState([])
+    const [user, setUser] = useState({name: "гість", _id: 0})
 
     const loadShop = function () {
         fetch("http://localhost:3333/api" + "/shop", {
@@ -40,12 +41,16 @@ export default function ShopAll() {
 
     useEffect( () => {
         loadShop()
+        if ( localStorage.getItem('user') ){ // Если есть данные по пользователю - восстановить их
+            setUser(JSON.parse (localStorage.getItem('user')))
+        }
     }, [])
 
 
     return(
+
         <div>
-            {/*<div> { shop.name} </div>*/}
+            <div> { user.email} </div>
             <div className='shopTitle'>
                 {shop.map(shop => (
                     <div key={shop._id}  className='titleName'>
@@ -54,36 +59,25 @@ export default function ShopAll() {
                         </div>
                         <div className='inform'>
                         <p className='shopName'>Назва: {shop.shopName}</p>
-                        <p>Телефон: {shop.contact}</p>
+                            <p>Телефон: {shop.contact}</p>
                         <p>Місто: {shop.location}</p>
                         </div>
                         <div className='about'>
-                            <p>Про магазин: {shop.aboutShop}</p>
-
+                            <p>Про магазин:<br/>{shop.aboutShop}</p>
                         </div>
+
                     </div>
+
+
                 ))
                 }
+
             </div>
 
-
-            {/*<div className="row">*/}
-            {/*    <div className="col-sm-6">*/}
-            {/*        <div className="card">*/}
-            {/*            {shop.map(shop => (*/}
-            {/*                <div key={shop._id} className="card-body">*/}
-            {/*                    <p className="card-title">{shop.avatar}</p>*/}
-            {/*                    <p className="card-text">Назва магазину: {shop.shopName}</p>*/}
-            {/*                    /!*<a href="#" className="btn btn-primary">Go somewhere</a>*!/*/}
-            {/*                </div>*/}
-            {/*            ))*/}
-            {/*            }*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-        {/*    </div>*/}
 
 
 
         </div>
+
     )
 }

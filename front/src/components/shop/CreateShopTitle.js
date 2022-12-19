@@ -27,14 +27,12 @@ export default function CreateShopTitle() {
             .required('Номер телефону вашого магазину обов язкове'),
         location: Yup.string()
             .required('Поле обов"язкове'),
+        // telegram: Yup.string()
+        //     .required('Поле обов"язкове'),
         typeShop: Yup.string()
             .required('Поле обов"язкове'),
-        avatar: Yup.string()
-            .required('Поле обов"язкове'),
-        aboutShop: Yup.string()
-            .required('Поле обов"язкове')
-            .min(10, 'Минимальная длинна обьявления 10 символов')
-            .max(500, 'Максимальна длина обьявления 500 символов'),
+
+
 
 
     })
@@ -83,14 +81,7 @@ console.log(data)
         <div className="container mt-5">
             <h2>Створіть ваш магазин</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
-                {/*<div className="form-group">*/}
 
-                {/*    <label>Avatar</label>*/}
-                {/*    <img  height='200' width='150' className='imgA'/>*/}
-                {/*    <input type="file" {...register("file", { required: true })} />*/}
-                {/*    {errors.avatar && <span><br/>Файл обязательное поле<br/></span>}*/}
-
-                {/*</div>*/}
                 <div className="form-group">
                     <label>Назва магазину</label>
                     <input
@@ -102,7 +93,7 @@ console.log(data)
                     <div className="invalid-feedback">{errors.shopName?.message}</div>
                 </div>
                 <div className="form-group">
-                    <label>Ви є</label>
+                    <label>Ви є : </label><br/>
                     <select
                         {...register("typeShop")}>
                         <option value="0">Український виробник</option>
@@ -110,7 +101,7 @@ console.log(data)
                     </select>
                 </div>
                 <div className="form-group">
-                    <label>email по котрому ви можете з нами зв язатись</label>
+                    <label>Email :</label>
                     <input
                         name="email"
                         type="email"
@@ -120,7 +111,7 @@ console.log(data)
                     <div className="invalid-feedback">{errors.email?.message}</div>
                 </div>
                 <div className="form-group">
-                    <label>номер телефону по котрому ви можете з нами зв язатись</label>
+                    <label>Номер телефону :</label>
                     <input
                         name="contact"
                         type="text"
@@ -139,12 +130,25 @@ console.log(data)
                     />
                     <div className="invalid-feedback">{errors.location?.message}</div>
                 </div>
+
+                {/*<div className="form-group">*/}
+                {/*    <label>Посилання на ваш телеграм канал</label>*/}
+                {/*    <input*/}
+                {/*        name="telegram"*/}
+                {/*        type="text"*/}
+                {/*        {...register('telegram')}*/}
+                {/*        className={`form-control ${errors.telegram ? 'is-invalid' : ''}`}*/}
+                {/*    />*/}
+                {/*    <div className="invalid-feedback">{errors.telegram?.message}</div>*/}
+                {/*</div>*/}
+
+
                 <div className="form-group">
                     <label>Про магазин або як зробити замовлення</label>
                     <textarea
                         name="aboutShop"
                         {...register('aboutShop')}
-                        className={`form-control ${errors.aboutShop?.message}`}
+                        className={`form-control ${errors.aboutShop ? 'is-invalid' : ''}`}
                     />
                     <div className="invalid-feedback">{errors.aboutShop?.message}</div>
                 </div>
