@@ -8,11 +8,14 @@ import ShopHomePage from "./pages/shop/ShopHomePage";
 import CreateShopTitle from "./components/shop/CreateShopTitle";
 import ShopOne from "./components/shop/ShopOne";
 import CreateAd from "./components/shopAd/CreateAd";
+import ShopOneById from "./components/shop/ShopOneById";
+import AllAd from "./components/shopAd/AllAd";
 
 
 export default function MyRoutes(){
 
     return (
+
         <Routes>
             <Route path="/" element={<HomePage></HomePage>} />
             <Route path="/register" element={<RegisterPage></RegisterPage>} />
@@ -21,6 +24,12 @@ export default function MyRoutes(){
             <Route path="/shopOne" element={<ShopOne></ShopOne>} />
             <Route path="/shopTitle" element={<CreateShopTitle></CreateShopTitle>} />
             <Route path="/createAd" element={<CreateAd></CreateAd>} />
+
+
+            <Route path="/shop/:shopId" element={<ShopOneById></ShopOneById>} />
+            {/*<Route path="/ad/:adId" element={<AllAd></AllAd>} />*/}
+
+
 
             <Route path="/footer" element={<FooterPage></FooterPage>} />
             <Route path="*" element={<Error404></Error404>} />

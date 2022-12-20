@@ -6,6 +6,10 @@ exports.create = function (request, response){
         return response.status(401).json({message: "Вы не вошли в систему"})
     }
 
+    // if (user.email === user.email){
+    //     return response.status(401).json({message: "У вас вже э магазин"})
+    // }
+
     let bodyShop = request.body
     bodyShop.author_id = request.user._id // фиксируем пользователя
     bodyShop.created_at = Date.now()
@@ -31,7 +35,18 @@ exports.create = function (request, response){
 
 //вернуть все
 exports.index = function (request, response) {
-    ShopModel.find({}, function(err, allShops){
+
+    let findParams = {}
+
+    // console.log(request.query.author_id)
+
+    if(request.query.author_id !== undefined )
+        findParams.author_id = request.query.author_id
+
+    console.log("Search Params:")
+    console.log(findParams)
+
+    ShopModel.find(findParams, function(err, allShops){
 
         if(err) {
             console.log(err);
@@ -47,6 +62,8 @@ exports.index = function (request, response) {
 exports.show = function (request, response) {
 
     let findId = request.params.shop_id
+
+    console.log("shop_ID: " + findId)
 
     ShopModel.findById(findId, function(err, allShops){
 

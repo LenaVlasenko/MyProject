@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import "../../pages/CSS/shopAll.css"
+import {Link} from "react-router-dom";
 
 export default function ShopAll() {
 
@@ -40,34 +41,33 @@ export default function ShopAll() {
     }
 
     useEffect( () => {
-        loadShop()
         if ( localStorage.getItem('user') ){ // Если есть данные по пользователю - восстановить их
             setUser(JSON.parse (localStorage.getItem('user')))
         }
+        loadShop()
     }, [])
 
 
     return(
 
         <div>
-            <div> { user.email} </div>
             <div className='shopTitle'>
                 {shop.map(shop => (
                     <div key={shop._id}  className='titleName'>
                         <div className='foto'>
-                        <p>{shop.avatar}</p>
+                            <p>{shop.avatar}</p>
                         </div>
                         <div className='inform'>
-                        <p className='shopName'>Назва: {shop.shopName}</p>
+                            <Link to={`/shop/${shop._id}`} > Open Shop  </Link>
+                            <p className='shopName'>Назва: {shop.shopName}</p>
                             <p>Телефон: {shop.contact}</p>
-                        <p>Місто: {shop.location}</p>
+                            <p>Місто: {shop.location}</p>
                         </div>
                         <div className='about'>
                             <p>Про магазин:<br/>{shop.aboutShop}</p>
                         </div>
 
                     </div>
-
 
                 ))
                 }

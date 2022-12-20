@@ -14,6 +14,8 @@ let cors = require('cors')
 app.use(cors())
 
 //для работы с JSON
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -48,6 +50,7 @@ const shop = require('./storeWebsites/shopRouter')
 app.use('/api/shop', shop)
 
 const ad = require('./shopAd/adRouter')
+const {request} = require("express");
 app.use('/api/ad', ad)
 
 

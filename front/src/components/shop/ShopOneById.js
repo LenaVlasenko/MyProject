@@ -1,10 +1,13 @@
+import {useParams} from "react-router-dom"
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import "../../pages/CSS/shopOne.css"
-import {Link} from "react-router-dom";
 import AllAd from "../shopAd/AllAd";
 
-export default function ShopOne() {
+// props
+export default function ShopOneById() {
+    const {shopId} = useParams();
+    //console.log('ShopId' + shopId)
 
 
     const [shop, setShop] = useState([])
@@ -17,8 +20,7 @@ export default function ShopOne() {
     const loadShop = function () {
 
         fetch("http://localhost:3333/api"
-            + "/shop?"
-            + '&author_id=' + user._id
+            + "/shop/"+ shopId
             , {
                 method: 'GET',
                 headers: {
@@ -40,7 +42,7 @@ export default function ShopOne() {
                     console.log("Я ничего не делаю")
                     return
                 }
-                toast.success("Ваш магазин")// Ваш магазин
+                toast.success("Магазин")// Ваш магазин
                 console.log(data)
                 setShop(data)
             })
@@ -88,8 +90,8 @@ export default function ShopOne() {
     return(
         <div className="container mt-5">
             <div className='marTop'>
-                <div> { user.email} </div>                <div>
-                    {shop.map(shop => (
+                <div>
+                    {/*{shop.map(shop => (*/}
                         <div key={shop._id} className='shopDiv'>
                             <div className='icon'>
                                 <p>{shop.avatar}</p>
@@ -108,11 +110,11 @@ export default function ShopOne() {
                             </div>
                         </div>
 
-                    ))
-                    }
+                    {/*))*/}
+                    {/*}*/}
                 </div>
                 <div>
-                    <button><Link className="nav-link" to="/createAd">Створити картку товару</Link></button>
+                    {/*<button><Link className="nav-link" to="/createAd">Створити картку товару</Link></button>*/}
                     <AllAd></AllAd>
                 </div>
 
