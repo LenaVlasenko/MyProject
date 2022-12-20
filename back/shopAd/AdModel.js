@@ -11,7 +11,6 @@ const adSchema = new mongoose.Schema({
     message: String, // текст в обьявлении
     price: Number, //цена
 
-    isOpen: Boolean, // актуально не актуально
     category: Number, // 0 - одежда, 1 - мебель, 2 - ...
 
     comments: String, //коментарии

@@ -1,14 +1,22 @@
+import {Link, useParams} from "react-router-dom"
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 
 export default function AllAd() {
-
+    // const {adId} = useParams();
+    // console.log('adId: ' + adId)
 
     const [ads, setAds] = useState([])
-    const [user, setUser] = useState({name: "гість", _id: 0})
+    const [user, setUser] = useState(localStorage.getItem('user')?
+        JSON.parse(localStorage.getItem('user')) // Если есть
+        :{name: "гість", _id: 0} // Если нет
+    )
 
     const loadAd = function () {
-        fetch("http://localhost:3333/api" + "/ad", {
+        fetch("http://localhost:3333/api"
+            + "/ad?"
+            + '&author_id=' + user._id
+            , {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -29,7 +37,7 @@ export default function AllAd() {
                     console.log("Я ничего не делаю")
                     return
                 }
-                toast.success("Усі магазини")
+                toast.success("Усі картки магазину")
                 console.log(data)
                 setAds(data)
             })
@@ -71,10 +79,10 @@ export default function AllAd() {
     }
 
     useEffect( () => {
-        loadAd()
         if ( localStorage.getItem('user') ){ // Если есть данные по пользователю - восстановить их
             setUser(JSON.parse (localStorage.getItem('user')))
         }
+        loadAd()
     }, [])
 
 
@@ -82,6 +90,7 @@ export default function AllAd() {
 
         <div>
             <div> { user.email} </div>
+            {/*<Link to={`/ad/${ads._id}`}> soobshenie </Link>*/}
             <div className='adTitle'>
                 {ads.map(ad => (
                     <div key={ad._id}  className='title'>

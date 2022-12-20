@@ -32,7 +32,15 @@ exports.create = function (request, response){
 
 //вернуть все
 exports.index = function (request, response) {
-    adModel.find({}, function(err, allAd){
+
+    let findParams = {}
+
+    console.log(request.query.author_id)
+
+    if(request.query.author_id !== undefined )
+        findParams.author_id = request.query.author_id
+
+    adModel.find(findParams, function(err, allAd){
 
         if(err) {
             console.log(err);
@@ -48,6 +56,7 @@ exports.index = function (request, response) {
 exports.show = function (request, response) {
 
     let findId = request.params.ad_id
+
     adModel.findById(findId, function(err, allAd){
 
         if(err) {
