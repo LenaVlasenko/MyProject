@@ -6,7 +6,7 @@ export default function AllAd() {
     // const {adId} = useParams();
      //console.log('adId: ' + adId)
 
-    const [ads, setAds] = useState([])
+    const [ad, setAds] = useState([])
     const [user, setUser] = useState(localStorage.getItem('user')?
         JSON.parse(localStorage.getItem('user')) // Если есть
         :{name: "гість", _id: 0} // Если нет
@@ -14,6 +14,7 @@ export default function AllAd() {
     const [total, setTotal] = useState(null)
     const [page, setPage] = useState(1)
     const [per_page, setPerPage] = useState(3)
+    //const [author_id, setAutorId] = useState(3)
 
 
     // Всего страниц для отображения
@@ -36,8 +37,9 @@ export default function AllAd() {
     const loadAd = function () {
 
         fetch("http://localhost:3333/api"
-            + '/ad?page=' + page + "&per_page=" + per_page
-            // + '&author_id=' + ads._id
+            + '/ad?page=' + page
+            + "&per_page=" + per_page
+            // + '&author_id=' + adId
             // + "/ad/"
             // + '&author_id=' + user._id
             //+ '&shop_id=' + ads._id
@@ -66,7 +68,7 @@ export default function AllAd() {
                 toast.success("Усі картки магазину")
                 console.log(data)
                 setTotal(data.total) // Всего объявлений
-                //  ице
+
 
 
                 setAds(data.data)
@@ -74,6 +76,8 @@ export default function AllAd() {
             .catch(err=>{
                 console.log(err)
             })
+
+
     }
 
     const deleteAd = function (ev) {
@@ -148,7 +152,7 @@ export default function AllAd() {
         <div>
             <div className='flexContainer'>
             <div className='adTitle'>
-                {ads.map(ad => (
+                {ad.map(ad => (
                     <div key={ad._id}  className='title'>
                         <div className='iconCard'>
                             <p>{ad.imgCard}</p>
@@ -188,7 +192,7 @@ export default function AllAd() {
                             if (i === page ) {} // Если я вывожу текущую страницу - добавить например класс
                             li.push(<li className="page-item"><a className="page-link" data-page={i} onClick={goPage}>{i}</a></li>);
                         }
-                        if(countPage != totalPages) {
+                        if(countPage !== totalPages) {
                             li.push(<li className="page-item"><a className="page-link"> ... </a></li>);
                             li.push(<li className="page-item"><a className="page-link" data-page={totalPages} onClick={goPage}>{totalPages}</a></li>);
 

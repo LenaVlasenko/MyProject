@@ -100,7 +100,7 @@ export default function ShopOne() {
                             </div>
                             <div className='info'>
                                 <p className='shopName'>Назва: {shop.shopName}</p>
-                                {/*<p>Хто ви є: {shop.typeShop}</p>*/}
+                                <p>Хто ви є: {shop.typeShop}</p>
                                 <p>Телефон: {shop.contact}</p>
                                 <p>Місто: {shop.location}</p>
                             </div>

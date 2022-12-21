@@ -8,7 +8,7 @@ import AllAdById from "../shopAd/AllAdById";
 // props
 export default function ShopOneById() {
     const {shopId} = useParams();
-    //console.log('ShopId' + shopId)
+    console.log('ShopId' + shopId)
 
 
     const [shop, setShop] = useState([])
@@ -99,7 +99,7 @@ export default function ShopOneById() {
                             </div>
                             <div className='info'>
                                 <p className='shopName'>Назва: {shop.shopName}</p>
-                                {/*<p>Хто ви є: {shop.typeShop}</p>*/}
+                                <p>Хто ви є: {shop.typeShop}</p>
                                 <p>Телефон: {shop.contact}</p>
                                 <p>Місто: {shop.location}</p>
                             </div>

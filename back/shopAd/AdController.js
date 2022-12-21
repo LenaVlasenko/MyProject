@@ -39,7 +39,7 @@ exports.index = async function (request, response) {
     //Данные для постраничного вывода
 
     // количество обьявлений на странице
-    let per_page = 3;
+    let per_page = 2;
     if (request.query.per_page !== undefined) per_page = request.query.per_page
 
 
@@ -50,6 +50,7 @@ exports.index = async function (request, response) {
 
     console.log("Элементов на странице" + per_page)
     console.log("Текущая страница" + page)
+
 
     let total = await adModel.count();
     let allAds = await adModel.find({}).sort('created_at').skip((per_page*(page - 1))).limit(per_page);

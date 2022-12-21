@@ -58,8 +58,11 @@ export default function ShopAll() {
                             <p>{shop.avatar}</p>
                         </div>
                         <div className='inform'>
+                            <div className='open'>
                             <Link to={`/shop/${shop._id}`} > Open Shop  </Link>
+                            </div>
                             <p className='shopName'>Назва: {shop.shopName}</p>
+                            <p>Хто ви є: {shop.typeShop}</p>
                             <p>Телефон: {shop.contact}</p>
                             <p>Місто: {shop.location}</p>
                         </div>

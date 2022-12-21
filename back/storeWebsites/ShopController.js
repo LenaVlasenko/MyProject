@@ -49,9 +49,6 @@ exports.index = function (request, response) {
         findParams.author_id = request.query.author_id
 
 
-    // if (request.query.author_id === request.query.user._id){
-    //     return response.status(401).json({message: "У вас вже є магазин"})
-    // }
 
     console.log("Search Params:")
     console.log(findParams)
