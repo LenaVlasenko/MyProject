@@ -2,13 +2,15 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    border: 2px solid red;
-
+    background-color: lightyellow;
+    padding-bottom: 2%;
+    padding-left: 1%;
 }
 .titleName{
     width: 48%;
     display: flex;
-    border: 2px solid red;
+    margin-top: 1%;
+    /*border: 2px solid red;*/
 }
 .titleName:hover{
     width: 100%;
@@ -19,10 +21,12 @@
     font-weight: bold;
     color: #006a81;
     font-style: italic;
+
 }
 .foto{
     width: 32%;
-    border: 2px solid green;
+    border: 2px solid #006a81;
+    border-radius: 5px;
 }
 .titleName:hover .foto{
     width: 30%;
@@ -31,14 +35,16 @@
 .inform{
     width: 65%;
     margin-left: 2%;
-    border: 2px solid green;
+    border: 2px solid #006a81;
+    border-radius: 5px;
+    padding-left: 3%;
 }
 .about{
-    width: 45%;
-    border: 2px solid green;
+    width: 44%;
+    border: 2px solid #006a81;
+    border-radius: 5px;
     margin-left: 8%;
     display: none;
-    box-sizing: border-box;
     flex: 0 0 50%;
 
 
@@ -59,6 +65,7 @@
 .titleName:hover .inform{
     width: 31%;
     margin-left: 1%;
+    padding-left: 1.5%;
 
 }
 .buttonAll{

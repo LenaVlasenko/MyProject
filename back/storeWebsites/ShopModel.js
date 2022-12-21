@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const shopsSchema = new mongoose.Schema({
     author_id: {type: mongoose.ObjectId},//кто создал магазин
     avatar: String,// фото брэнда на аватаре
+    email: String,
     typeShop: Number, // 0 - украинский производитель, 1 -
     shopName: String,// название магазина
     contact: Number, // номер телефона

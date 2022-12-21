@@ -8,7 +8,6 @@ export default function HomePage(){
                <div className="rec">
                    <div className="marginT">
                        Тут може бути ваша реклама
-                       {/*<FileForm></FileForm>*/}
                    </div>
                    <div className="marginT">
                    Тут може бути ваша реклама

@@ -3,6 +3,7 @@ import {toast} from "react-toastify";
 import "../../pages/CSS/shopOne.css"
 import {Link} from "react-router-dom";
 import AllAd from "../shopAd/AllAd";
+import AllAdById from "../shopAd/AllAdById";
 
 export default function ShopOne() {
 
@@ -19,6 +20,7 @@ export default function ShopOne() {
         fetch("http://localhost:3333/api"
             + "/shop?"
             + '&author_id=' + user._id
+
             , {
                 method: 'GET',
                 headers: {
@@ -26,6 +28,7 @@ export default function ShopOne() {
                     'authorization': localStorage.getItem('jwtToken')
                 }
             })
+
             .then(res => {
                 //console.log(res)
                 if (res.status !== 200){
@@ -47,6 +50,7 @@ export default function ShopOne() {
             .catch(err=>{
                 console.log(err)
             })
+        //console.log(user._id)
     }
 
     const deleteShop = function (ev){

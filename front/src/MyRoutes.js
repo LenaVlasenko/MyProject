@@ -27,7 +27,7 @@ export default function MyRoutes(){
 
 
             <Route path="/shop/:shopId" element={<ShopOneById></ShopOneById>} />
-            {/*<Route path="/ad/:adId" element={<AllAd></AllAd>} />*/}
+            <Route path="/ad/:adId" element={<AllAd></AllAd>} />
 
 
 

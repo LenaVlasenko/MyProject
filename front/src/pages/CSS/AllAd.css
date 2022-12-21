@@ -1,0 +1,60 @@
+.flexContainer{
+
+}
+.adTitle{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: lightyellow;
+    padding-bottom: 3%;
+}
+.title{
+    width: 30%;
+    margin-top: 1%;
+}
+
+.iconCard{
+    border: 1px solid #006a81;
+    /*border-radius-topleft: 5px;*/
+    /*-moz-border-radius-topright: 5px;*/
+    border-radius: 5px;
+    height: 300px;
+}
+.cartProd{
+    border: 1px solid #006a81;
+    height: 31%;
+    border-radius: 5px;
+    margin-top: 3%;
+}
+.cartProd p{
+    word-wrap: break-word;
+    padding: 0 3%;
+}
+.price{
+    margin-bottom: 1%;
+}
+.page-link {
+    border: 2px solid #006a81;
+    color: #006a81;
+    background-color: lightyellow;
+}
+.page-link:hover{
+    color: lightyellow;
+    background-color: #006a81;
+}
+.pagination {
+    margin-top: 1%;
+}
+.nav-link{
+    color: #006a81;
+    padding: 1%;
+    box-sizing: border-box;
+}
+.nav-link:hover{
+    color: lightyellow;
+    box-sizing: border-box;
+}
+.createCard{
+    width: 20%;
+    margin-bottom: 2%;
+}

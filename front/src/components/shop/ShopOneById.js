@@ -1,8 +1,9 @@
-import {useParams} from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import "../../pages/CSS/shopOne.css"
 import AllAd from "../shopAd/AllAd";
+import AllAdById from "../shopAd/AllAdById";
 
 // props
 export default function ShopOneById() {
@@ -114,7 +115,7 @@ export default function ShopOneById() {
                     {/*}*/}
                 </div>
                 <div>
-                    {/*<button><Link className="nav-link" to="/createAd">Створити картку товару</Link></button>*/}
+                    { shop.author_id === user._id ?  <button className="createCard"><Link className="nav-link" to="/createAd">Створити картку товару</Link></button>: " Не мое" }
                     <AllAd></AllAd>
                 </div>
 

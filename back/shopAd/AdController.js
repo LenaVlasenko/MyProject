@@ -31,31 +31,65 @@ exports.create = function (request, response){
 }
 
 //вернуть все
-exports.index = function (request, response) {
+exports.index = async function (request, response) {
 
-    let findParams = {}
+    console.log("Пришел за всеми объявлениями")
 
-    console.log(request.query.author_id)
 
-    if(request.query.author_id !== undefined )
-        findParams.author_id = request.query.author_id
+    //Данные для постраничного вывода
 
-    adModel.find(findParams, function(err, allAd){
+    // количество обьявлений на странице
+    let per_page = 3;
+    if (request.query.per_page !== undefined) per_page = request.query.per_page
 
-        if(err) {
-            console.log(err);
-            return response.status(404).json(err);
-        }
-        else {
-            return response.status(200).json(allAd);
-        }
-    });
+
+    // Текущая страница
+    let page = 1;
+    if (request.query.page !== undefined) page = request.query.page
+
+
+    console.log("Элементов на странице" + per_page)
+    console.log("Текущая страница" + page)
+
+    let total = await adModel.count();
+    let allAds = await adModel.find({}).sort('created_at').skip((per_page*(page - 1))).limit(per_page);
+    let send = {
+        total: total,// Сколько всего в колекции
+        page: page,// Какая сейчас страница открыта
+        per_page: per_page,// Сколько элементов на страницу
+        data: allAds// Сами элементы данной страницы
+    }
+
+    console.log(send)
+    return response.status(200).json(send);
+
+
+    // let findParamsAd = {}
+    //
+    // console.log(request.query.author_id)
+    //
+    // if(request.query.author_id !== undefined )
+    //     findParamsAd.author_id = request.query.author_id
+    //
+    // console.log("Search Params:")
+    // console.log(findParamsAd)
+    //
+    // adModel.find(findParamsAd, function(err, allAd){
+    //
+    //     if(err) {
+    //         console.log(err);
+    //         return response.status(404).json(err);
+    //     }
+    //     else {
+    //         return response.status(200).json(allAd);
+    //     }
+    // });
 }
 
 // вернуть конкрекретный магазин
 exports.show = function (request, response) {
 
-    let findId = request.params.ad_id
+    let findId = request.params.ads_id
 
     adModel.findById(findId, function(err, allAd){
 

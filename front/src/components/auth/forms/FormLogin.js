@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 import {toast} from "react-toastify";
 import "../../../pages/CSS/formLog.css"
+import {Link} from "react-router-dom";
 
 export default function FormLogin(){
 
