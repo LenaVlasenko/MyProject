@@ -28,8 +28,6 @@ export default function CreateAd(){
         price: Yup.number()
             .required('Обязательно укажите стоимость'),
 
-
-
     })
 
     const formOptions = { resolver: yupResolver(formSchema) }
@@ -38,14 +36,24 @@ export default function CreateAd(){
 
     const onSubmit = function (data){
 
+
+        const formData = new FormData();
+        formData.append('title', data.title)
+        formData.append('message', data.message)
+        formData.append('price', data.price)
+        if(data.file[0])
+            // Присоединяем данные из файла в форму
+            formData.append("file", data.file[0]);
+
+
+
         fetch("http://localhost:3333/api" + "/ad", {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
                 'authorization': localStorage.getItem('jwtToken')
 
             },
-            body: JSON.stringify(data)
+            body: formData
         })
             .then(res => {
                 //console.log(res)
@@ -81,6 +89,11 @@ export default function CreateAd(){
         <div className="container mt-5">
             <h6>Создать обьявление</h6>
             <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="form-group">
+                    <label>Фото товару:</label><br/>
+                    <input type="file" {...register("file")} />
+                </div>
+
                 <div className="form-group">
                     <label>Заголовок</label>
                     <input

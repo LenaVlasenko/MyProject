@@ -3,12 +3,11 @@ import {toast} from "react-toastify";
 import "../../pages/CSS/shopOne.css"
 import {Link} from "react-router-dom";
 import AllAd from "../shopAd/AllAd";
-import AllAdById from "../shopAd/AllAdById";
 
 export default function ShopOne() {
 
 
-    const [shop, setShop] = useState([])
+    const [shops, setShop] = useState([])
     const [user, setUser] = useState(localStorage.getItem('user')?
         JSON.parse(localStorage.getItem('user')) // Если есть
         :{name: "гість", _id: 0} // Если нет
@@ -18,9 +17,8 @@ export default function ShopOne() {
     const loadShop = function () {
 
         fetch("http://localhost:3333/api"
-            + "/shop?"
-            + '&author_id=' + user._id
-
+            + "/shop?" + user._id
+            // + '&author_id=' + user._id
             , {
                 method: 'GET',
                 headers: {
@@ -58,8 +56,10 @@ export default function ShopOne() {
         console.log(ev.target.value)
         let id = ev.target.value
 
-        fetch("http://localhost:3333/api" + "/shop/" + id, {
-            method: 'DELETE',
+        fetch("http://localhost:3333/api"
+            + "/shop/"
+            + id, {
+            method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
                 'authorization': localStorage.getItem('jwtToken')
@@ -92,14 +92,16 @@ export default function ShopOne() {
     return(
         <div className="container mt-5">
             <div className='marTop'>
-                <div> { user.email} </div>                <div>
-                    {shop.map(shop => (
+                <div> { user.email} </div>
+                <div>
+                    {shops.map(shop => (
                         <div key={shop._id} className='shopDiv'>
-                            <div className='icon'>
-                                <p>{shop.avatar}</p>
+                            <div className='foto'>
+                                <img src={'http://localhost:3333' + shop.avatar}/>
                             </div>
                             <div className='info'>
                                 <p className='shopName'>Назва: {shop.shopName}</p>
+                                <p>Ваш магазин про: {shop.typeProduct}</p>
                                 <p>Хто ви є: {shop.typeShop}</p>
                                 <p>Телефон: {shop.contact}</p>
                                 <p>Місто: {shop.location}</p>
@@ -108,7 +110,7 @@ export default function ShopOne() {
                                 <p>Про магазин:<br/>{shop.aboutShop}</p>
                             </div>
                             <div>
-                                { shop.author_id === user._id ? <p className='button'> <button> Edit </button> <button value={shop._id} onClick={deleteShop}> Delete </button>  </p> : " Не мое" }
+                                { shop.author_id === user._id ? <p className='button'> <button>Edit</button> <button value={shop._id} onClick={deleteShop}> Delete </button>  </p> : " Не мое" }
                             </div>
                         </div>
 

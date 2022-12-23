@@ -1,7 +1,7 @@
 const adModel = require('./AdModel')
 
 
-exports.create = function (request, response){
+exports.create = async function (request, response){
     // Если пользователь не авторизован - нет ключа
     if (!request.user){
         return response.status(401).json({message: "Вы не вошли в систему"})
@@ -11,9 +11,19 @@ exports.create = function (request, response){
     bodyAd.author_id = request.user._id // фиксируем пользователя
     bodyAd.created_at = Date.now()
 
-    // TODO: потом тут получать картинки
-
     let newAd = new adModel (bodyAd)
+
+    // TODO: потом тут получать картинки
+    console.log(request.files)
+    if (request.files) {
+        let fileData = request.files.file
+        let uploadFileDir = './public/store/files/' + fileData.name
+        await fileData.mv(uploadFileDir) // переместить файл
+        newAd.imgCard = '/store/files/' + fileData.name
+        console.log('file ready')
+    }
+
+
 
     console.log(newAd)
 
@@ -48,8 +58,8 @@ exports.index = async function (request, response) {
     if (request.query.page !== undefined) page = request.query.page
 
 
-    console.log("Элементов на странице" + per_page)
-    console.log("Текущая страница" + page)
+    // console.log("Элементов на странице" + per_page)
+    // console.log("Текущая страница" + page)
 
 
     let total = await adModel.count();
@@ -92,6 +102,8 @@ exports.show = function (request, response) {
 
     let findId = request.params.ads_id
 
+    console.log("show ad_ID: " + findId)
+
     adModel.findById(findId, function(err, allAd){
 
         if(err) {
@@ -111,6 +123,10 @@ exports.update = function (request, response){
         return response.status(401).json({message: "Вы не вошли в систему"})
     }
 
+    let findId = request.params.ad_id
+
+    console.log("Edit ad_ID: " + findId)
+
     //Шукаю запис в базі данних
     adModel.findById(findId, function(err, ad){
 
@@ -119,19 +135,20 @@ exports.update = function (request, response){
             return response.status(404).json(err);
         }
         else {
+
             if (ad.author_id.toString() !== request.user._id){
-                return response.status(403).json({message: "Ви не маєте права видалити цей магазин"})
+                return response.status(403).json({message: "Ви не маєте права змінити картку товару"})
             }
 
-            // ShopModel.updateOne(findId, function (err){
-            //     if(err) {
-            //         console.log(err);
-            //         return response.status(422).json(err);
-            //     }
-            //
-            //     return response.status(204).send("Success!")
-            //
-            // })
+            adModel.updateOne(findId, function (err){
+                if(err) {
+                    console.log(err);
+                    return response.status(422).json(err);
+                }
+
+                return response.status(204).send("Success!")
+
+            })
 
             return response.status(204).send("Success!")
 

@@ -4,7 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 import {toast} from "react-toastify";
 import "../../../pages/CSS/formLog.css"
-import {Link} from "react-router-dom";
 
 export default function FormLogin(){
 
@@ -15,12 +14,12 @@ export default function FormLogin(){
         password: Yup.string()
             .required('Пароль обязательный')
             .min(3, 'Минимальная длинна пароля 3 символа')
-            .matches(/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/g, "Ваш пароль слишком простой"),
+            .matches(/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/g, "Пароль має містити одну велику літеру і один спецсимвол"),
 
     })
 
     const formOptions = { resolver: yupResolver(formSchema) }
-    const { register, handleSubmit, reset, formState } = useForm(formOptions)
+    const { register, handleSubmit, formState } = useForm(formOptions)
     const { errors } = formState
 
     const onSubmit = function (data){

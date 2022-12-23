@@ -1,6 +1,6 @@
 const ShopModel = require('./ShopModel')
 
-exports.create = function (request, response){
+exports.create = async function (request, response){
     // Если пользователь не авторизован - нет ключа
     if (!request.user){
         return response.status(401).json({message: "Вы не вошли в систему"})
@@ -15,13 +15,22 @@ exports.create = function (request, response){
 
     let newShop = new ShopModel (bodyShop)
 
+    console.log(request.files)
+    if (request.files) {
+        let fileData = request.files.file
+        let uploadFileDir = './public/store/files/' + fileData.name
+        await fileData.mv(uploadFileDir) // переместить файл
+        newShop.avatar = '/store/files/' + fileData.name
+        console.log('file ready')
+    }
+
     console.log(newShop)
 
-    if (request.user.email === bodyShop.email){
-        return response.status(422).json({message: "У вас вже є магазин"})
-        console.log(request.user.email)
-        console.log(bodyShop.email)
-    }
+    // if (request.user.email === bodyShop.email){
+    //     return response.status(422).json({message: "У вас вже є магазин"})
+    //     console.log(request.user.email)
+    //     console.log(bodyShop.email)
+    // }
 
     // Сохранили запись в базе данных
     newShop.save(function(err){
@@ -37,32 +46,67 @@ exports.create = function (request, response){
 }
 
 //вернуть все
-exports.index = function (request, response) {
+exports.index = async function (request, response) {
+    console.log("Прийшов за всеми магазинами")
+
+// Данные для постраничного вывода объявлений
+
+    // Количество объявлений на страницу
+    let per_page = 2;
+    if (request.query.per_page !== undefined) per_page = request.query.per_page
+
+    // Текущая страница
+    let page = 1;
+    if (request.query.page !== undefined) page = request.query.page
 
 
+    // Какой продавец
+
+
+
+    console.log("Элементов на страницу: " + per_page)
+    console.log("Текущая страница: " + page)
+    // console.log("Author_id: " + author_id)
+
+    // Я готовлюсь получить обьявления
+    let allShops = [];
+    let total = 0;
 
     let findParams = {}
 
-    // console.log(request.query.author_id)
+    console.log(request.query.author_id)
 
     if(request.query.author_id !== undefined )
         findParams.author_id = request.query.author_id
 
 
+    total = await ShopModel.find().count();
+    allShops = await ShopModel.find(findParams).sort('created_at').skip((per_page * (page - 1))).limit(per_page);
 
-    console.log("Search Params:")
-    console.log(findParams)
+    let send = {
+        total: total, // Сколько всего в коллекции
+        page: page, // Какая сейчас страница открыта
+        per_page: per_page, // Сколько элементов на страницу
+        data: allShops // Сами элементы данной страницы
+    }
 
-    ShopModel.find(findParams, function(err, allShops){
+    console.log(send)
+    return response.status(200).json(send);
 
-        if(err) {
-            console.log(err);
-            return response.status(404).json(err);
-        }
-        else {
-            return response.status(200).json(allShops);
-        }
-    });
+
+    // console.log("Search Params:")
+    // console.log(findParams)
+    //
+    // ShopModel.find(findParams, function(err, allShops){
+    //
+    //     if(err) {
+    //         console.log(err);
+    //         return response.status(404).json(err);
+    //     }
+    //     else {
+    //         return response.status(200).json(allShops);
+    //     }
+    // });
 }
 
 // вернуть конкрекретный магазин

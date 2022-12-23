@@ -1,12 +1,13 @@
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import "../../pages/CSS/AllAd.css"
+import {Link} from "react-router-dom";
 
 export default function AllAd() {
     // const {adId} = useParams();
      //console.log('adId: ' + adId)
 
-    const [ad, setAds] = useState([])
+    const [ads, setAds] = useState([])
     const [user, setUser] = useState(localStorage.getItem('user')?
         JSON.parse(localStorage.getItem('user')) // Если есть
         :{name: "гість", _id: 0} // Если нет
@@ -14,7 +15,7 @@ export default function AllAd() {
     const [total, setTotal] = useState(null)
     const [page, setPage] = useState(1)
     const [per_page, setPerPage] = useState(3)
-    //const [author_id, setAutorId] = useState(3)
+
 
 
     // Всего страниц для отображения
@@ -37,13 +38,8 @@ export default function AllAd() {
     const loadAd = function () {
 
         fetch("http://localhost:3333/api"
-            + '/ad?page=' + page
-            + "&per_page=" + per_page
-            // + '&author_id=' + adId
-            // + "/ad/"
-            // + '&author_id=' + user._id
-            //+ '&shop_id=' + ads._id
-            // + '&author_id=' + adId
+            + '/ad?'
+            + 'page=' + page + "&per_page=" + per_page
             , {
             method: 'GET',
             headers: {
@@ -152,10 +148,11 @@ export default function AllAd() {
         <div>
             <div className='flexContainer'>
             <div className='adTitle'>
-                {ad.map(ad => (
+                {ads.map(ad => (
                     <div key={ad._id}  className='title'>
                         <div className='iconCard'>
-                            <p>{ad.imgCard}</p>
+                            {/*<p>{ad.imgCard}</p>*/}
+                            <img src={'http://localhost:3333' + ad.imgCard}/>
                         </div>
                         <div className='cartProd'>
                             <p className='adName'>Назва: {ad.title}</p>
@@ -163,7 +160,7 @@ export default function AllAd() {
                             <p className='price'>Ціна: {ad.price} грн</p>
                         </div>
                         <div>
-                            { ad.author_id === user._id ? <p className='button'> <button> Edit </button> <button value={ad._id} onClick={deleteAd}> Delete </button>  </p> : " Не мое" }
+                            { ad.author_id === user._id ? <p className='button'> <button><Link className="nav-link" to="#"> Edit </Link></button> <button value={ad._id} onClick={deleteAd}> Delete </button>  </p> : " Не мое" }
                         </div>
 
                     </div>

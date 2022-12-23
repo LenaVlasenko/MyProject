@@ -10,6 +10,8 @@ import ShopOne from "./components/shop/ShopOne";
 import CreateAd from "./components/shopAd/CreateAd";
 import ShopOneById from "./components/shop/ShopOneById";
 import AllAd from "./components/shopAd/AllAd";
+import EditAd from "./components/shopAd/EditAd";
+import AllAdById from "./components/shopAd/AllAdById";
 
 
 export default function MyRoutes(){
@@ -24,6 +26,10 @@ export default function MyRoutes(){
             <Route path="/shopOne" element={<ShopOne></ShopOne>} />
             <Route path="/shopTitle" element={<CreateShopTitle></CreateShopTitle>} />
             <Route path="/createAd" element={<CreateAd></CreateAd>} />
+
+
+            {/*<Route path="/ad/:adId/editAd" element={<EditAd></EditAd>} />*/}
+
 
 
             <Route path="/shop/:shopId" element={<ShopOneById></ShopOneById>} />

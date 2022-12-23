@@ -2,8 +2,8 @@ import {Link, useParams} from "react-router-dom"
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import "../../pages/CSS/shopOne.css"
-import AllAd from "../shopAd/AllAd";
 import AllAdById from "../shopAd/AllAdById";
+import AllAd from "../shopAd/AllAd";
 
 // props
 export default function ShopOneById() {
@@ -94,11 +94,12 @@ export default function ShopOneById() {
                 <div>
                     {/*{shop.map(shop => (*/}
                         <div key={shop._id} className='shopDiv'>
-                            <div className='icon'>
-                                <p>{shop.avatar}</p>
+                            <div className='foto'>
+                                <img src={'http://localhost:3333' + shop.avatar} width='200px'/>
                             </div>
                             <div className='info'>
                                 <p className='shopName'>Назва: {shop.shopName}</p>
+                                <p>Ваш магазин про: {shop.typeProduct}</p>
                                 <p>Хто ви є: {shop.typeShop}</p>
                                 <p>Телефон: {shop.contact}</p>
                                 <p>Місто: {shop.location}</p>

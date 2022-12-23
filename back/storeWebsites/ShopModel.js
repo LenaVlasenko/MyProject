@@ -7,7 +7,8 @@ const shopsSchema = new mongoose.Schema({
     author_id: {type: mongoose.ObjectId},//кто создал магазин
     avatar: String,// фото брэнда на аватаре
     email: String,
-    typeShop: Number, // 0 - украинский производитель, 1 -
+    typeProduct: Number, // 0 - одежа, 1 - меблі....
+    typeShop: Number, // 0 - украинский производитель, 1 - підприемець
     shopName: String,// название магазина
     contact: Number, // номер телефона
     location: String,// адресс

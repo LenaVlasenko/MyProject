@@ -31,8 +31,10 @@ export default function CreateShopTitle() {
         //     .required('Поле обов"язкове'),
         typeShop: Yup.string()
             .required('Поле обов"язкове'),
-
-
+        typeProduct: Yup.string()
+            .required('Поле обов"язкове'),
+        aboutShop: Yup.string()
+            .required('Поле обов"язкове'),
 
 
     })
@@ -42,14 +44,29 @@ export default function CreateShopTitle() {
     const { errors } = formState
 
     const onSubmit = function (data){
-console.log(data)
+
+
+        const formData = new FormData();
+        formData.append('email', data.email)
+        formData.append('shopName', data.shopName)
+        formData.append('typeProduct', data.typeProduct)
+        formData.append('typeShop', data.typeShop)
+        formData.append('contact', data.contact)
+        formData.append('location', data.location)
+        formData.append('aboutShop', data.aboutShop)
+        if(data.file[0])
+            // Присоединяем данные из файла в форму
+            formData.append("file", data.file[0]);
+
+
+
+
         fetch("http://localhost:3333/api" + "/shop", {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
                 'authorization': localStorage.getItem('jwtToken')
             },
-            body: JSON.stringify(data)
+            body: formData
         })
             .then(res => {
                 //console.log(res)
@@ -83,6 +100,12 @@ console.log(data)
             <form onSubmit={handleSubmit(onSubmit)}>
 
                 <div className="form-group">
+                    <label>Фото магазину:</label><br/>
+                    <input type="file" {...register("file")} />
+                </div>
+
+
+                <div className="form-group">
                     <label>Назва магазину</label>
                     <input
                         name="shopName"
@@ -91,6 +114,18 @@ console.log(data)
                         className={`form-control ${errors.shopName ? 'is-invalid' : ''}`}
                     />
                     <div className="invalid-feedback">{errors.shopName?.message}</div>
+                </div>
+                <div className="form-group">
+                    <label>Ваш магазин про: </label><br/>
+                    <select
+                        {...register("typeProduct")}>
+                        <option value="0">Одяг</option>
+                        <option value="1" >Меблі</option>
+                        <option value="2" >Продукти</option>
+                        <option value="3" >Автомобілі</option>
+                        <option value="4" >Послуги</option>
+                        <option value="5" >HandMade</option>
+                    </select>
                 </div>
                 <div className="form-group">
                     <label>Ви є : </label><br/>
