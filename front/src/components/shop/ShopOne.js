@@ -7,7 +7,7 @@ import AllAd from "../shopAd/AllAd";
 export default function ShopOne() {
 
 
-    const [shops, setShop] = useState([])
+    const [shop, setShop] = useState([])
     const [user, setUser] = useState(localStorage.getItem('user')?
         JSON.parse(localStorage.getItem('user')) // Если есть
         :{name: "гість", _id: 0} // Если нет
@@ -17,8 +17,9 @@ export default function ShopOne() {
     const loadShop = function () {
 
         fetch("http://localhost:3333/api"
-            + "/shop?" + user._id
-            // + '&author_id=' + user._id
+            + "/shop?"
+            + '&author_id=' + user._id
+
             , {
                 method: 'GET',
                 headers: {
@@ -94,7 +95,7 @@ export default function ShopOne() {
             <div className='marTop'>
                 <div> { user.email} </div>
                 <div>
-                    {shops.map(shop => (
+                    {shop.map(shop => (
                         <div key={shop._id} className='shopDiv'>
                             <div className='foto'>
                                 <img src={'http://localhost:3333' + shop.avatar}/>

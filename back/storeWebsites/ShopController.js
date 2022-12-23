@@ -46,67 +46,30 @@ exports.create = async function (request, response){
 }
 
 //вернуть все
-exports.index = async function (request, response) {
-    console.log("Прийшов за всеми магазинами")
-
-// Данные для постраничного вывода объявлений
-
-    // Количество объявлений на страницу
-    let per_page = 2;
-    if (request.query.per_page !== undefined) per_page = request.query.per_page
-
-    // Текущая страница
-    let page = 1;
-    if (request.query.page !== undefined) page = request.query.page
-
-
-    // Какой продавец
-
-
-
-    console.log("Элементов на страницу: " + per_page)
-    console.log("Текущая страница: " + page)
-    // console.log("Author_id: " + author_id)
-
-    // Я готовлюсь получить обьявления
-    let allShops = [];
-    let total = 0;
+exports.index = function (request, response) {
 
     let findParams = {}
 
-    console.log(request.query.author_id)
+    // console.log(request.query.author_id)
 
     if(request.query.author_id !== undefined )
         findParams.author_id = request.query.author_id
 
 
-    total = await ShopModel.find().count();
-    allShops = await ShopModel.find(findParams).sort('created_at').skip((per_page * (page - 1))).limit(per_page);
 
-    let send = {
-        total: total, // Сколько всего в коллекции
-        page: page, // Какая сейчас страница открыта
-        per_page: per_page, // Сколько элементов на страницу
-        data: allShops // Сами элементы данной страницы
-    }
+    console.log("Search Params:")
+    console.log(findParams)
 
-    console.log(send)
-    return response.status(200).json(send);
+    ShopModel.find(findParams, function(err, allShops){
 
-
-    // console.log("Search Params:")
-    // console.log(findParams)
-    //
-    // ShopModel.find(findParams, function(err, allShops){
-    //
-    //     if(err) {
-    //         console.log(err);
-    //         return response.status(404).json(err);
-    //     }
-    //     else {
-    //         return response.status(200).json(allShops);
-    //     }
-    // });
+        if(err) {
+            console.log(err);
+            return response.status(404).json(err);
+        }
+        else {
+            return response.status(200).json(allShops);
+        }
+    });
 }
 
 // вернуть конкрекретный магазин

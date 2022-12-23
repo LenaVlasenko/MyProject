@@ -2,7 +2,6 @@ import {Link, useParams} from "react-router-dom"
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
 import "../../pages/CSS/shopOne.css"
-import AllAdById from "../shopAd/AllAdById";
 import AllAd from "../shopAd/AllAd";
 
 // props
