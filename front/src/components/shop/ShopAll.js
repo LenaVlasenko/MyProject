@@ -10,7 +10,8 @@ export default function ShopAll() {
     const [user, setUser] = useState({name: "гість", _id: 0})
 
     const loadShop = function () {
-        fetch("http://localhost:3333/api" + "/shop", {
+        fetch("http://localhost:3333/api" + "/shop/"
+            , {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,7 +21,7 @@ export default function ShopAll() {
             .then(res => {
                 //console.log(res)
                 if (res.status !== 200){
-                    toast.error("Ошибка")
+                    toast.error("Помилка")
                     return null
                 }
                 return res.json()
@@ -28,7 +29,7 @@ export default function ShopAll() {
             .then(data =>{
                 if (data === null) {
                     // Ответ от сервера с ошибкой
-                    console.log("Я ничего не делаю")
+                    console.log("Я нічого не роблю")
                     return
                 }
                 toast.success("Усі магазини")
@@ -62,8 +63,8 @@ export default function ShopAll() {
                             <Link to={`/shop/${shop._id}`} > Open Shop  </Link>
                             </div>
                             <p className='shopName'>Назва: {shop.shopName}</p>
-                            <p>Ваш магазин про: {shop.typeProduct}</p>
-                            <p>Хто ви є: {shop.typeShop}</p>
+                            {/*<p>Ваш магазин про: {shop.typeProduct}</p>*/}
+                            {/*<p>Хто ви є: {shop.typeShop}</p>*/}
                             <p>Телефон: {shop.contact}</p>
                             <p>Місто: {shop.location}</p>
                         </div>

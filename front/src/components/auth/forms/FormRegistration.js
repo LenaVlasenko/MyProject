@@ -9,14 +9,14 @@ export default function FormRegistration() {
 
     const formSchema = Yup.object().shape({
         email: Yup.string()
-            .required('Почта обязательна')
-            .email('Формат почты не верный'),
+            .required('Пошта обов язкова')
+            .email('Формат пошти не вірний'),
         password: Yup.string()
-            .required('Пароль обязательный')
-            .min(3, 'Минимальная длинна пароля 3 символа'),
+            .required('Пароль обов язковий')
+            .min(3, 'Мінімальна довжина паролю 3 символи'),
         confirmPwd: Yup.string()
             .required('Повторите пароль')
-            .oneOf([Yup.ref('password')], 'Ваши пароли не совпадают'),
+            .oneOf([Yup.ref('password')], 'Ваші паролі не співпадають'),
     })
 
     const formOptions = { resolver: yupResolver(formSchema) }
@@ -39,10 +39,10 @@ export default function FormRegistration() {
                 if (res.status !== 201){
                     switch (res.status){
                         case 422:
-                            toast.error(" Сервер не может зашифровать пароль")
+                            toast.error(" Сервер не може зашифрувати пароль")
                             break
                         case 403:
-                            toast.error(" Такой пользователь уже существует")
+                            toast.error(" Такий користувач вже існує")
                             break
                     }
                     return null
@@ -52,20 +52,20 @@ export default function FormRegistration() {
             .then(data => {
                 if (data === null) {
                     // Ответ от сервера с ошибкой
-                    console.log("Я ничего не делаю")
+                    console.log("Я нічого не роблю")
                     return
                 }
                 console.log(data)
                 localStorage.setItem('jwtToken', data.token)
             })
             .catch(err => {
-                toast.error("<h4>Произошла ошибка</h4>" + err.message())
+                toast.error("<h4>Произошла ошибкаВиникла помилка</h4>" + err.message())
             })
     }
 
     return (
         <div className="container mt-5">
-            <h6 className="formDis">Регистрация пользователя</h6>
+            <h6 className="formDis">Реєстрація користувача</h6>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <label>Email</label>

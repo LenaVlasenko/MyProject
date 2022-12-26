@@ -1,0 +1,12 @@
+.aboutUs{
+    margin-top: 10%;
+    -webkit-box-shadow: -5px -5px 60px -5px rgba(29, 85, 128, 0.6);
+    -moz-box-shadow: -5px -5px 60px -5px rgba(29, 85, 128, 0.6);
+    box-shadow: -5px -5px 60px -5px rgba(29, 85, 128, 0.6);
+    border-radius: 5px;
+}
+.aboutUs p {
+    padding: 1% 2%;
+    font-size: 22px;
+    font-family: "Courier New";
+}

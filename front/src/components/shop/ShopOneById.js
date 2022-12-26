@@ -31,7 +31,7 @@ export default function ShopOneById() {
             .then(res => {
                 //console.log(res)
                 if (res.status !== 200){
-                    toast.error("Ошибка")
+                    toast.error("Помилка")
                     return null
                 }
                 return res.json()
@@ -39,7 +39,7 @@ export default function ShopOneById() {
             .then(data =>{
                 if (data === null) {
                     // Ответ от сервера с ошибкой
-                    console.log("Я ничего не делаю")
+                    console.log("Я нічого не роблю")
                     return
                 }
                 toast.success("Магазин")// Ваш магазин
@@ -91,31 +91,32 @@ export default function ShopOneById() {
         <div className="container mt-5">
             <div className='marTop'>
                 <div>
-                    {/*{shop.map(shop => (*/}
-                        <div key={shop._id} className='shopDiv'>
-                            <div className='foto'>
-                                <img src={'http://localhost:3333' + shop.avatar} width='200px'/>
-                            </div>
-                            <div className='info'>
-                                <p className='shopName'>Назва: {shop.shopName}</p>
-                                <p>Ваш магазин про: {shop.typeProduct}</p>
-                                <p>Хто ви є: {shop.typeShop}</p>
-                                <p>Телефон: {shop.contact}</p>
-                                <p>Місто: {shop.location}</p>
-                            </div>
-                            <div className='aboutShop'>
-                                <p>Про магазин:<br/>{shop.aboutShop}</p>
-                            </div>
-                            <div>
-                                { shop.author_id === user._id ? <p className='button'> <button> Edit </button> <button value={shop._id} onClick={deleteShop}> Delete </button>  </p> : " Не мое" }
-                            </div>
+                    <div key={shop._id} className='shopDiv'>
+                        <div className='icon'>
+                            <img src={'http://localhost:3333' + shop.avatar}/>
                         </div>
+                        <div className='info'>
+                            <p className='shopName'>Назва: {shop.shopName}</p>
+                            {/*<p>Хто ви є: {shop.typeShop}</p>*/}
+                            <p>Телефон: {shop.contact}</p>
+                            <p>Місто: {shop.location}</p>
+                        </div>
+                        <div className='aboutShop'>
+                            <p>Про магазин:<br/>{shop.aboutShop}</p>
+                        </div>
+                        <div>
+                            { shop.author_id === user._id ? <p className='button'> <button> Edit </button> <button value={shop._id} onClick={deleteShop}> Delete </button>  </p> : " Не мое" }
+                        </div>
+                    </div>
 
-                    {/*))*/}
-                    {/*}*/}
                 </div>
                 <div>
+                    <div className="block">
                     { shop.author_id === user._id ?  <button className="createCard"><Link className="nav-link" to="/createAd">Створити картку товару</Link></button>: " Не мое" }
+                    <div className="reclama">
+                        <p>Тут має бути ваша реклама</p>
+                    </div>
+                    </div>
                     <AllAd></AllAd>
                 </div>
 

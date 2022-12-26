@@ -19,14 +19,14 @@ export default function CreateAd(){
 
     const formSchema = Yup.object().shape({
         title: Yup.string()
-            .required('Заголовок обязательный')
-            .min(3, 'Минимальная длина заголовка 5ть символов'),
+            .required('Заголовок обов язковий')
+            .min(3, 'Мінімальна довжина 5 символів'),
         message: Yup.string()
-            .required('Тукст обьявления обязательный')
-            .min(10, 'Минимальная длинна обьявления 10 символов')
-            .max(300, 'Максимальна длина обьявления 300 символов'),
+            .required('Опис обов язковий')
+            .min(10, 'Мінімальна довжина 10 символів')
+            .max(300, 'Максимальна довжина 300 символів'),
         price: Yup.number()
-            .required('Обязательно укажите стоимость'),
+            .required('Обов язкове'),
 
     })
 
@@ -58,7 +58,7 @@ export default function CreateAd(){
             .then(res => {
                 //console.log(res)
                 if (res.status !== 201){
-                    toast.error("Ошибка")
+                    toast.error("Помилка")
                     return null
                 }
                 return res.json()
@@ -66,10 +66,10 @@ export default function CreateAd(){
             .then(data =>{
                 if (data === null) {
                     // Ответ от сервера с ошибкой
-                    console.log("Я ничего не делаю")
+                    console.log("Я нічого не роблю")
                     return
                 }
-                toast.success("Вы успешно опубликовали обьявление")
+                toast.success("ви строрили картку товару")
                 //toast.success(data.token)
                 console.log(data)
             })
@@ -105,7 +105,7 @@ export default function CreateAd(){
                     <div className="invalid-feedback">{errors.title?.message}</div>
                 </div>
                 <div className="form-group">
-                    <label>Текст обьявления</label>
+                    <label>Текст опис товару</label>
                     <textarea
                         name="message"
                         {...register('message')}
@@ -114,7 +114,7 @@ export default function CreateAd(){
                     <div className="invalid-feedback">{errors.message?.message}</div>
                 </div>
                 <div className="form-group">
-                    <label>Цена</label>
+                    <label>Ціна</label>
                     <input
                         name="price"
                         type="number"

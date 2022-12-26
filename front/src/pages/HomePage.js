@@ -7,13 +7,13 @@ export default function HomePage(){
            <div className="container mt-5">
                <div className="rec">
                    <div className="marginT">
+                       Тут має бути ваша реклама
+                   </div>
+                   <div className="marginT">
                        Тут може бути ваша реклама
                    </div>
                    <div className="marginT">
-                   Тут може бути ваша реклама
-                   </div>
-                   <div className="marginT">
-                   Тут може бути ваша реклама
+                       Тут має бути ваша реклама
                    </div>
                </div>
                <ShopHomePage></ShopHomePage>

@@ -19,7 +19,7 @@ function App() {
         </div>
       </BrowserRouter>
 
-      <ToastContainer />
+      <ToastContainer/>
 
       <FooterPage></FooterPage>
     </>

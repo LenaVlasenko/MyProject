@@ -30,7 +30,7 @@ export default function AllAdById() {
             .then(res => {
                 //console.log(res)
                 if (res.status !== 200){
-                    toast.error("Ошибка")
+                    toast.error("Помилка")
                     return null
                 }
                 return res.json()
@@ -38,7 +38,7 @@ export default function AllAdById() {
             .then(data =>{
                 if (data === null) {
                     // Ответ от сервера с ошибкой
-                    console.log("Я ничего не делаю")
+                    console.log("Я нічого не рблю")
                     return
                 }
                 toast.success("Усі картки магазину")
@@ -48,10 +48,7 @@ export default function AllAdById() {
             .catch(err=>{
                 console.log(err)
             })
-        //console.log('user._id:' + user._id)
-        //console.log('shop_id:' + shop_id)
-        //console.log('author_id' + author_id)
-        //console.log('adId' + adId)
+
     }
 
     const deleteAd = function (ev) {
@@ -71,11 +68,11 @@ export default function AllAdById() {
                 console.log(res)
                 console.log(res.status)
                 if(res.status === 204) {
-                    toast.success(" Вы успешно удалили запись")
+                    toast.success(" Ви видалили картку товару")
                     loadAd()
                     return
                 }
-                toast.error(" Произошла ошибка удаления ")
+                toast.error(" Виникла помилка ")
 
             })
             .catch(err=> {
@@ -98,7 +95,6 @@ export default function AllAdById() {
 
         <div>
             <div> { user.email} </div>
-            {/*<Link to={`/ad/${ads._id}`}> soobshenie </Link>*/}
             <div className='adTitle'>
                 {/*{ads.map(ad => (*/}
                     <div key={ads._id}  className='title'>

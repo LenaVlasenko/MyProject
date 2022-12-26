@@ -31,7 +31,7 @@ export default function Navigation(){
                             </button>
                             <ul className="dropdown-menu">
                                 <li><Link className="nav-link" to="/shopAll">Усі магазини</Link></li>
-                                {/*<li><Link className="nav-link" to="{shop.typeShop[0]}">Український виробник</Link></li>*/}
+                                <li><Link className="nav-link" to="/about">Про нас</Link></li>
                                 {/*<li> <a className="dropdown-item" href="#"> Український виробник</a> </li>*/}
                                 {/*<li><a className="dropdown-item" href="#">Підприємець</a></li>*/}
                                 <li><Link className="nav-link" to="/shopTitle">Створити магазин</Link></li>

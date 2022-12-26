@@ -12,9 +12,6 @@ const adSchema = new mongoose.Schema({
     price: Number, //цена
 
 
-    comments: String, //коментарии
-    like: String,//???
-
 });
 
 module.exports = mongoose.model("ads", adSchema)

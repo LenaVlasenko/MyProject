@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 export default function AllAd() {
     // const {adId} = useParams();
-     //console.log('adId: ' + adId)
+    //console.log('adId: ' + adId)
 
     const [ads, setAds] = useState([])
     const [user, setUser] = useState(localStorage.getItem('user')?
@@ -40,13 +40,14 @@ export default function AllAd() {
         fetch("http://localhost:3333/api"
             + '/ad?'
             + 'page=' + page + "&per_page=" + per_page
+            + '&author_id=' + user._id
             , {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'authorization': localStorage.getItem('jwtToken')
-            }
-        })
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': localStorage.getItem('jwtToken')
+                }
+            })
             .then(res => {
                 //console.log(res)
                 if (res.status !== 200){
@@ -64,8 +65,6 @@ export default function AllAd() {
                 toast.success("Усі картки магазину")
                 console.log(data)
                 setTotal(data.total) // Всего объявлений
-
-
 
                 setAds(data.data)
             })
@@ -120,7 +119,7 @@ export default function AllAd() {
         {
             setPage(page - 1)
         } else {
-            toast.info('Вы на первой странице')
+            toast.info('Ви на першій')
         }
     }
 
@@ -128,7 +127,7 @@ export default function AllAd() {
         if (page < total / per_page) {
             setPage(page+1)
         } else {
-            toast.info('Вы на последней странице')
+            toast.info('Ви на останній сторінці')
         }
     }
 
@@ -147,28 +146,28 @@ export default function AllAd() {
 
         <div>
             <div className='flexContainer'>
-            <div className='adTitle'>
-                {ads.map(ad => (
-                    <div key={ad._id}  className='title'>
-                        <div className='iconCard'>
-                            {/*<p>{ad.imgCard}</p>*/}
-                            <img src={'http://localhost:3333' + ad.imgCard}/>
-                        </div>
-                        <div className='cartProd'>
-                            <p className='adName'>Назва: {ad.title}</p>
-                            <p>{ad.message}</p>
-                            <p className='price'>Ціна: {ad.price} грн</p>
-                        </div>
-                        <div>
-                            { ad.author_id === user._id ? <p className='button'> <button><Link className="nav-link" to="#"> Edit </Link></button> <button value={ad._id} onClick={deleteAd}> Delete </button>  </p> : " Не мое" }
+                <div className='adTitle'>
+                    {ads.map(ad => (
+                        <div key={ad._id}  className='title'>
+                            <div className='iconCard'>
+                                {/*<p>{ad.imgCard}</p>*/}
+                                <img src={'http://localhost:3333' + ad.imgCard}/>
+                            </div>
+                            <div className='cartProd'>
+                                <p className='adName'>Назва: {ad.title}</p>
+                                <p>{ad.message}</p>
+                                <p className='price'>Ціна: {ad.price} грн</p>
+                            </div>
+                            <div>
+                                { ad.author_id === user._id ? <p className='button'> <button><Link className="nav-link" to="#"> Edit </Link></button> <button value={ad._id} onClick={deleteAd}> Delete </button>  </p> : " Не мое" }
+                            </div>
+
                         </div>
 
-                    </div>
+                    ))
+                    }
 
-                ))
-                }
-
-            </div>
+                </div>
             </div>
 
             <nav aria-label="Page navigation example">

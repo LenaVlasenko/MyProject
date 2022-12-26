@@ -10,8 +10,8 @@ export default function ShopOne() {
     const [shop, setShop] = useState([])
     const [user, setUser] = useState(localStorage.getItem('user')?
         JSON.parse(localStorage.getItem('user')) // Если есть
-        :{name: "гість", _id: 0} // Если нет
-    )
+        :{name: "гість", _id: 0}) // Если нет
+    const [ads, setAds] = useState([])
 
 
     const loadShop = function () {
@@ -19,7 +19,6 @@ export default function ShopOne() {
         fetch("http://localhost:3333/api"
             + "/shop?"
             + '&author_id=' + user._id
-
             , {
                 method: 'GET',
                 headers: {
@@ -31,7 +30,7 @@ export default function ShopOne() {
             .then(res => {
                 //console.log(res)
                 if (res.status !== 200){
-                    toast.error("Ошибка")
+                    toast.error("Помилка")
                     return null
                 }
                 return res.json()
@@ -39,12 +38,13 @@ export default function ShopOne() {
             .then(data =>{
                 if (data === null) {
                     // Ответ от сервера с ошибкой
-                    console.log("Я ничего не делаю")
+                    console.log("Я ничего не делаюЯ нічого не роблю")
                     return
                 }
                 toast.success("Ваш магазин")// Ваш магазин
                 console.log(data)
                 setShop(data)
+                // setAds(data)
             })
             .catch(err=>{
                 console.log(err)
@@ -102,8 +102,8 @@ export default function ShopOne() {
                             </div>
                             <div className='info'>
                                 <p className='shopName'>Назва: {shop.shopName}</p>
-                                <p>Ваш магазин про: {shop.typeProduct}</p>
-                                <p>Хто ви є: {shop.typeShop}</p>
+                                {/*<p>Ваш магазин про: {shop.typeProduct}</p>*/}
+                                {/*<p>Хто ви є: {shop.typeShop}</p>*/}
                                 <p>Телефон: {shop.contact}</p>
                                 <p>Місто: {shop.location}</p>
                             </div>
@@ -119,7 +119,12 @@ export default function ShopOne() {
                     }
                 </div>
                 <div>
-                    <button><Link className="nav-link" to="/createAd">Створити картку товару</Link></button>
+                    <div className="block">
+                    <button className='btnCard'><Link className="nav-link" to="/createAd">Створити картку товару</Link></button>
+                        <div className="reclama">
+                            <p>Тут має бути ваша реклама</p>
+                        </div>
+                    </div>
                     <AllAd></AllAd>
                 </div>
 

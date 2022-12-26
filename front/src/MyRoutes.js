@@ -9,9 +9,8 @@ import CreateShopTitle from "./components/shop/CreateShopTitle";
 import ShopOne from "./components/shop/ShopOne";
 import CreateAd from "./components/shopAd/CreateAd";
 import ShopOneById from "./components/shop/ShopOneById";
-import AllAd from "./components/shopAd/AllAd";
-import EditAd from "./components/shopAd/EditAd";
-import AllAdById from "./components/shopAd/AllAdById";
+import About from "./pages/About";
+
 
 
 export default function MyRoutes(){
@@ -20,6 +19,7 @@ export default function MyRoutes(){
 
         <Routes>
             <Route path="/" element={<HomePage></HomePage>} />
+            <Route path="/about" element={<About></About>} />
             <Route path="/register" element={<RegisterPage></RegisterPage>} />
             <Route path="/login" element={<LoginPage></LoginPage>} />
             <Route path="/shopAll" element={<ShopHomePage></ShopHomePage>} />
@@ -28,12 +28,7 @@ export default function MyRoutes(){
             <Route path="/createAd" element={<CreateAd></CreateAd>} />
 
 
-            {/*<Route path="/ad/:adId/editAd" element={<EditAd></EditAd>} />*/}
-
-
-
             <Route path="/shop/:shopId" element={<ShopOneById></ShopOneById>} />
-            <Route path="/ad/:adId" element={<AllAd></AllAd>} />
 
 
 

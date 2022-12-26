@@ -10,6 +10,7 @@ exports.create = async function (request, response){
     let bodyAd = request.body
     bodyAd.author_id = request.user._id // фиксируем пользователя
     bodyAd.created_at = Date.now()
+    bodyAd.likeCount = 0
 
     let newAd = new adModel (bodyAd)
 
@@ -45,6 +46,12 @@ exports.index = async function (request, response) {
 
     console.log("Пришел за всеми объявлениями")
 
+    let searchParams = {}
+
+    console.log('author_id: ' + request.query.author_id)
+
+    if(request.query.author_id !== undefined )
+        searchParams.author_id = request.query.author_id
 
     //Данные для постраничного вывода
 
@@ -62,8 +69,10 @@ exports.index = async function (request, response) {
     // console.log("Текущая страница" + page)
 
 
+
+
     let total = await adModel.count();
-    let allAds = await adModel.find({}).sort('created_at').skip((per_page*(page - 1))).limit(per_page);
+    let allAds = await adModel.find({searchParams}).sort('created_at').skip((per_page*(page - 1))).limit(per_page);
     let send = {
         total: total,// Сколько всего в колекции
         page: page,// Какая сейчас страница открыта

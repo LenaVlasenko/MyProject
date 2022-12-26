@@ -9,11 +9,11 @@ export default function FormLogin(){
 
     const formSchema = Yup.object().shape({
         email: Yup.string()
-            .required('Почта обязательна')
-            .email('Формат почты не верный'),
+            .required('Пошта обов язкова')
+            .email('Формат пошти не вірний'),
         password: Yup.string()
-            .required('Пароль обязательный')
-            .min(3, 'Минимальная длинна пароля 3 символа')
+            .required('Пароль обов язковий')
+            .min(3, 'Мінімальна довжина паролю 3 символи')
             .matches(/(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/g, "Пароль має містити одну велику літеру і один спецсимвол"),
 
     })
@@ -34,7 +34,7 @@ export default function FormLogin(){
             .then(res => {
                 //console.log(res)
                 if (res.status !== 200){
-                    toast.error("Ошибка")
+                    toast.error("Помилка")
                     return null
                 }
                 return res.json()
@@ -42,10 +42,10 @@ export default function FormLogin(){
             .then(data =>{
                 if (data === null) {
                     // Ответ от сервера с ошибкой
-                    console.log("Я ничего не делаю")
+                    console.log("Я нічого не роблю")
                     return
                 }
-                toast.success("Вы успешно вошли в систему")
+                toast.success("Ви успішно увійшли в систему")
                 //toast.success(data.token)
                 console.log(data)
                 localStorage.setItem('jwtToken', data.token)
@@ -58,7 +58,7 @@ export default function FormLogin(){
 
     return(
         <div className="container mt-5">
-            <h6 className="formDis">Вход (логин)</h6>
+            <h6 className="formDis">Вхід (логін)</h6>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <label>Email</label>
