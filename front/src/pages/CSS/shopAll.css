@@ -27,17 +27,17 @@
 
 }
 .foto{
-    width: 32%;
+    width: 45%;
     border: 2px solid #006a81;
     border-radius: 5px;
     margin-left: 1%;
 }
 .titleName:hover .foto{
-    width: 30%;
+    width: 40%;
     /*height: 40%;*/
 }
 .inform{
-    width: 65%;
+    width: 55%;
     margin-left: 2%;
     border: 2px solid #006a81;
     border-radius: 5px;
@@ -64,10 +64,10 @@
     flex: 0 0 50%;
 }
 .titleName:hover .foto{
-    width: 15.3%;
+    width: 22%;
 }
 .titleName:hover .inform{
-    width: 31%;
+    width: 27%;
     margin-left: 1%;
     padding-left: 1.5%;
 
